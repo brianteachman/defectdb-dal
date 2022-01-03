@@ -1,6 +1,7 @@
 __pycache__/
 .vscode/
-data/db_data/
+data/db_data/*
 venv
 
-.env
+# Typically dont want to include this
+# .env
