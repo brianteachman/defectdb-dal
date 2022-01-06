@@ -45,6 +45,25 @@ CREATE TABLE defects (
 );
 GO
 
+CREATE VIEW defect_details
+AS
+SELECT
+    d.SerialNumber,
+    d.CellLocation,
+    dt.TypeName AS DefectType,
+    s.StationName AS FoundAt,
+    d.Cause,
+    m.MachineName AS Origin,
+    d.DateFound,
+    d.TimeFound
+FROM defects d
+INNER JOIN defect_types dt
+        ON d.TypeId = dt.TypeId
+INNER JOIN qa_stations s
+        ON d.StationId = s.StationId
+INNER JOIN machines m
+        ON d.OriginId = m.MachineId;
+GO
 
 INSERT INTO qa_stations (StationName, StationCode) VALUES (N'Pre-Solder', N'QC1');
 INSERT INTO qa_stations (StationName, StationCode) VALUES (N'Post-Solder', N'QC2');

@@ -4,12 +4,12 @@
 
 import pyodbc
 
-QUERY_SELECT_ALL_READABLE = """
-SELECT d.SerialNumber, d.CellLocation, m.MachineName AS Origin, d.Cause, d.DateFound, d.TimeFound, s.StationCode, t.TypeName
-FROM dbo.defects AS d
-JOIN dbo.defect_types as t ON d.TypeId = t.TypeId
-JOIN dbo.qa_stations as s ON d.StationId = s.StationId
-JOIN dbo.machines as m ON d.OriginId = m.MachineId
+QUERY_SELECT_ALL = """
+SELECT * FROM defect_details
+"""
+
+QUERY_SELECT_TOP1000 = """
+SELECT TOP(1000) * FROM defect_details
 """
 
 QUERY_INSERT_DEFECT = """
@@ -30,10 +30,6 @@ VALUES (?,?,?,?)
 QUERY_INSERT_QA_STATION = """
 INSERT INTO qa_stations (StationName, StationCode) 
 VALUES (?,?)
-"""
-
-QUERY_SELECT_TOP1000 = """
-SELECT TOP(1000) * FROM defects
 """
 
 
@@ -62,7 +58,7 @@ class DefectManager():
         return num_inserted
 
     def select_readable(self):
-        return self.query(QUERY_SELECT_ALL_READABLE)
+        return self.query(QUERY_SELECT_TOP1000)
 
     def last1000(self):
         return self.cursor.execute(QUERY_SELECT_TOP1000)

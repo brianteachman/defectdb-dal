@@ -44,10 +44,10 @@ def seed_fe_data(count):
 
 # seed_fe_data(500)
 
-# dm.query("SELECT * FROM defects;")
-# dm.select_readable()
-# dm.dumpRows()
+# dm.query("SELECT * FROM defect_details;")
+dm.select_readable()
 
-defects = dm.getDict()
+dm.dumpRows()
+# defects = dm.getDict()
 # for defect in defects:
     # print(defect)
