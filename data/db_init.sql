@@ -39,8 +39,8 @@ CREATE TABLE defects (
 	Cause VARCHAR(50) NOT NULL,
 	DateFound VARCHAR(10) NOT NULL,
 	TimeFound VARCHAR(8) NOT NULL,
-    OriginId INT NOT NULL REFERENCES machines (MachineId),
-    TypeId INT NOT NULL REFERENCES defect_types (TypeId),
+	OriginId INT NOT NULL REFERENCES machines (MachineId),
+	TypeId INT NOT NULL REFERENCES defect_types (TypeId),
 	StationId INT NULL REFERENCES qa_stations (StationId)
 );
 GO
